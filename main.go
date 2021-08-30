@@ -2,18 +2,18 @@ package main
 
 import (
 	"fmt"
-	"sync"
 )
 
-func printer(wg *sync.WaitGroup) {
-	defer wg.Done()
-	fmt.Println("print example")
+func sender(message chan<- string) {
+	message <- "hello"
 }
 
 func main() {
-	var wg sync.WaitGroup
-	wg.Add(2)
-	go printer(&wg)
-	go printer(&wg)
-	wg.Wait()
+	message := make(chan string)
+
+	go sender(message)
+	go sender(message)
+
+	fmt.Println(<-message)
+	fmt.Println(<-message)
 }
