@@ -5,7 +5,6 @@ import (
 	"sync"
 )
 
-// exercise
 func printer(wg *sync.WaitGroup) {
 	defer wg.Done()
 	fmt.Println("print example")

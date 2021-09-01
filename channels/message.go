@@ -1,3 +1,5 @@
+package channel
+
 import (
 	"fmt"
 )
